@@ -1,0 +1,20 @@
+#!/bin/bash
+
+#extraer sid deuna lista de IoCs
+
+INPUT=$(cat $1)
+
+for i in $INPUT;
+do
+	for j in 1 2 3 4 
+		do
+
+			var=$(cat local.rules | grep $i | cut -d ";" -f $j)
+
+
+			if echo $var | grep '^sid' >/dev/null ; then echo $i':'$(echo $var | cut -d ':' -f 2); fi			 
+					
+		done
+
+	
+done
